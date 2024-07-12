@@ -6,7 +6,8 @@
 
   outputs = { self, nixpkgs }:
     let
-      pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+      system = "x86_64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
       repo = pkgs.fetchFromGitHub {
         owner = "waltermoreira";
         repo = "test-submodules";
@@ -16,6 +17,6 @@
       };
     in
     {
-      packages.x86_64-darwin.default = repo;
+      packages.${system}.default = repo;
     };
 }
